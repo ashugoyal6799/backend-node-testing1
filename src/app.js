@@ -1,6 +1,8 @@
+require("dotenv").config;
+
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
@@ -10,7 +12,7 @@ let users = [
   { id: 1, name: "Alice" },
   { id: 2, name: "Bob" },
 ];
- 
+
 // GET / - Welcome message
 app.get("/", (req, res) => {
   res.send("Welcome to the Express Web Server!");
@@ -35,5 +37,5 @@ app.post("/add-user", (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
